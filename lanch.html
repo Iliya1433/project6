@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lanch.css">
+    <link rel="stylesheet" href="notification.css">
+    <link rel="stylesheet" href="combo.css">
+    <script src="menu.js"></script>
+    <script src="displayDishes.js"></script>
+    <script src="orderForm.js"></script>
+    <script src="notification.js"></script>
+    <script src="combo_block.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <h1>Food Construct</h1>
+        <nav class="nav">
+            <ul id="headerNav">
+                <li><a href="index.html#self">О нас</a></li>
+                <li><a href="lanch.html" class="active">Собрать ланч</a></li>
+                <li>Заказы</li>
+                <li><a href="#footer">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dish_combo_with_header">
+            <h2>Доступные для заказа комбо</h2>
+            <div class="dish_combo">
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+                <div class="combo_block"> </div>
+            </div>
+        </div>
+
+        <div class="notification" style="display: none;">
+            <div class="overlay displayNotification"></div>
+            <div class="popup">
+                <p>Ваше уведомление!</p>
+                <button class="displayNotification notificationBtn">Окей👌</button>
+            </div>
+        </div>
+
+
+        <section>
+            <h2 class="dish_header">Выберете суп</h2>
+            <div class="dish_block"> </div>
+        </section>
+
+        <section>
+            <h2 class="dish_header">Выберете главное блюдо</h2>
+            <div class="dish_block"> </div>
+        </section>
+
+        <section>
+            <h2 class="dish_header">Выберете салат или стартер</h2>
+            <div class="dish_block"> </div>
+        </section>
+
+        <section>
+            <h2 class="dish_header">Выберете напиток</h2>
+            <div class="dish_block"> </div>
+        </section>
+
+        <section>
+            <h2 class="dish_header">Выберете десерт</h2>
+            <div class="dish_block"> </div>
+        </section>
+
+        <div>
+            <h2 style="text-align: center;">Сделать заказ</h2>
+            <form action="https://httpbin.org/post" method="POST" class="order-form">
+                <div class="customer-order">
+                    <h3 style="padding-bottom: 10px;">Ваш заказ</h3>
+
+                    <p class="nothing-selected">Ничего не выбрано</p> <!-- По умолчанию показывается только это -->
+                    <div class="order-category" id="soup-order" style="display:none;">
+                        <strong>Суп:</strong><br><span>Блюдо не выбрано</span>
+                    </div>
+                    <div class="order-category" id="main_course-order" style="display:none;">
+                        <strong>Главное блюдо:</strong><br><span>Блюдо не выбрано</span>
+                    </div>
+                    <div class="order-category" id="beverages-order" style="display:none;">
+                        <strong>Напиток:</strong><br><span>Напиток не выбран</span>
+                    </div>
+                    <div class="order-category" id="salads_starters-order" style="display:none;">
+                        <strong>Напиток:</strong><br><span>Салат или стартер не выбран</span>
+                    </div>
+                    <div class="order-category" id="desserts-order" style="display:none;">
+                        <strong>Напиток:</strong><br><span>Десерт не выбран</span>
+                    </div>
+                    <p id="order-cost" style="display:none;"></p>
+
+                    <div class="customer-comment">
+                        <h3 style="padding-bottom: 10px;">Комментарий клиента:</h3>
+                        <textarea name="customer-comment" id="customer-comment"></textarea>
+                    </div>
+                </div>
+
+                <div class="customer-data">
+                    <h3>Данные клиента</h3>
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="subscribe" class="subscribe">
+                        <input type="checkbox" id="subscribe" name="subscribe" checked>
+                        <p>Я согласен получать информацию (подписка на рассылку)</p>
+                    </label>
+
+                    <label for="phone">Телефон:</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <label for="address">Адрес:</label>
+                    <input type="text" id="address" name="address" required>
+
+                    <label class="time_checkbox">Выберите время доставки:
+                        <div>
+                            <input type="radio" id="delivery-time-radio-1" class="subscribe_time"
+                                name="delivery-time-radio" required>
+                            <label for="delivery-time-radio-1">Как можно быстрее</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="delivery-time-radio-2" class="subscribe_time"
+                                name="delivery-time-radio" required>
+                            <label for="delivery-time-radio-2">К указанному времени</label>
+                        </div>
+                    </label>
+
+                    <label for="delivery-time">Указание времени доставки:</label>
+                    <input type="time" id="delivery-time" name="delivery-time" min="07:00" max="23:00" step="300"
+                        required>
+
+                    <section class="form_buttons">
+                        <button type="reset" class="form_button">Сбросить</button>
+                        <button type="submit" class="form_button" id="form_button">Отправить</button>
+                    </section>
+
+                </div>
+            </form>
+
+        </div>
+    </main>
+
+    <footer id="footer">
+        <p>Напиши нам:&nbsp;</p><a href="http://vk.ru">vk.ru</a>
+    </footer>
+
+</body>
